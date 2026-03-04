@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CircuiTikZ Circuit with TikZJax</title>
-    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,10 +28,16 @@
         }
         .circuit-container {
             text-align: center;
+            margin: 30px 0;
         }
         p {
             color: #666;
             line-height: 1.6;
+        }
+        .loading {
+            text-align: center;
+            color: #999;
+            font-style: italic;
         }
     </style>
 </head>
@@ -42,22 +47,20 @@
         <p>This is a basic RC (Resistor-Capacitor) circuit rendered with CircuiTikZ and TikZJax.</p>
         
         <div class="circuit-container">
+            <div class="loading">Loading circuit diagram...</div>
+            <script src="https://tikzjax.com/v1/tikzjax.js"></script>
             <script type="text/tikz">
-                \documentclass{standalone}
-                \usepackage{circuitikz}
-                \begin{document}
-                \begin{tikzpicture}
-                    % Draw the circuit
-                    \draw (0,0) to[V, l=$V_s$] (0,2)
-                        -- (2,2) to[R, l=$R$] (4,2)
-                        -- (4,0) to[C, l=$C$] (2,0)
-                        -- (0,0);
-                    
-                    % Add labels for nodes
-                    \node at (0, -0.5) {GND};
-                    \node at (4, -0.5) {GND};
-                \end{tikzpicture}
-                \end{document}
+\documentclass{standalone}
+\usepackage{circuitikz}
+\begin{document}
+\begin{tikzpicture}[scale=2]
+    % Draw the circuit
+    \draw (0,0) to[V, l=$V_s$] (0,2)
+        -- (2,2) to[R, l=$R$] (4,2)
+        -- (4,0) to[C, l=$C$] (2,0)
+        -- (0,0);
+\end{tikzpicture}
+\end{document}
             </script>
         </div>
         
