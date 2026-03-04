@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CircuiTikZ Circuit with TikZJax</title>
+    <title>TikZJax Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,42 +24,35 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-top: 0;
         }
         .circuit-container {
             text-align: center;
             min-height: 300px;
         }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Simple RC Circuit</h1>
-        <p>This is a basic RC (Resistor-Capacitor) circuit rendered with CircuiTikZ and TikZJax.</p>
+        <h1>Basic TikZ Test (No CircuiTikZ)</h1>
         
         <div class="circuit-container">
             <script type="text/tikz">
-                \documentclass{standalone}
-                \usepackage{circuitikz}
-                \begin{document}
-                \begin{tikzpicture}
-                    \draw (0,0) to[V, l=$V_s$] (0,2)
-                        -- (2,2) to[R, l=$R$] (4,2)
-                        -- (4,0) to[C, l=$C$] (2,0)
-                        -- (0,0);
-                \end{tikzpicture}
-                \end{document}
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=2]
+  \draw[thick] (0,0) -- (1,0) -- (1,1) -- (0,1) -- (0,0);
+  \draw[thick] (0,0) -- (1,1);
+  \draw[thick] (0,1) -- (1,0);
+  \node at (0.5,0.5) {Test};
+\end{tikzpicture}
+\end{document}
             </script>
         </div>
-        
-        <p><strong>Circuit Description:</strong> A voltage source (V_s) in series with a resistor (R) and capacitor (C).</p>
+
+        <p>If you see a square with an X and "Test" label, TikZJax is working.</p>
     </div>
 
-    <!-- Load TikZJax from jsDelivr (which serves GitHub files with correct MIME type) -->
     <script src="https://cdn.jsdelivr.net/gh/artisticat1/obsidian-tikzjax@main/tikzjax.js"></script>
 </body>
 </html>
