@@ -3,5 +3,13 @@
 <body>
   <h1>TikZJax Test</h1>
   <script src="tikzjax.js"></script>
+  <script type="text/tikz">
+    \usepackage{circuitikz}
+    \begin{document}
+    \begin{circuitikz}
+      \draw (0,0) to[R=1k] (2,0);
+    \end{circuitikz}
+    \end{document}
+  </script>
 </body>
 </html>
