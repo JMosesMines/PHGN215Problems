@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CircuiTikZ Circuit with TikZJax</title>
+    <title>TikZJax Test</title>
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,47 +25,33 @@
         h1 {
             text-align: center;
             color: #333;
-            margin-top: 0;
         }
-        .circuit-container {
+        .diagram-container {
             text-align: center;
             margin: 30px 0;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-        .loading {
-            text-align: center;
-            color: #999;
-            font-style: italic;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Simple RC Circuit</h1>
-        <p>This is a basic RC (Resistor-Capacitor) circuit rendered with CircuiTikZ and TikZJax.</p>
+        <h1>Simple TikZ Test (No CircuiTikZ)</h1>
         
-        <div class="circuit-container">
-            <div class="loading">Loading circuit diagram...</div>
-            <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+        <div class="diagram-container">
             <script type="text/tikz">
-\documentclass{standalone}
-\usepackage{circuitikz}
-\begin{document}
-\begin{tikzpicture}[scale=2]
-    % Draw the circuit
-    \draw (0,0) to[V, l=$V_s$] (0,2)
-        -- (2,2) to[R, l=$R$] (4,2)
-        -- (4,0) to[C, l=$C$] (2,0)
-        -- (0,0);
-\end{tikzpicture}
-\end{document}
+                \documentclass{standalone}
+                \usepackage{tikz}
+                \begin{document}
+                \begin{tikzpicture}
+                    \draw (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
+                    \draw (0,0) -- (2,2);
+                    \draw (0,2) -- (2,0);
+                    \node at (1,1) {X};
+                \end{tikzpicture}
+                \end{document}
             </script>
         </div>
         
-        <p><strong>Circuit Description:</strong> A voltage source (V_s) in series with a resistor (R) and capacitor (C) in parallel, all connected to ground.</p>
+        <p>If you see a square with an X in it above, then TikZJax is working. CircuiTikZ may not be supported by this version.</p>
     </div>
 </body>
 </html>
