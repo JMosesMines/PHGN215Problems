@@ -1,0 +1,12 @@
+{
+  "headers": [
+    {
+      "source": "**/*.wasm.gz",
+      "headers": [{ "key": "Content-Type", "value": "application/wasm" }]
+    },
+    {
+      "source": "**/*.dump.gz",
+      "headers": [{ "key": "Content-Type", "value": "application/octet-stream" }]
+    }
+  ]
+}
