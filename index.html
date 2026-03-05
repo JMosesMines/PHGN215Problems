@@ -9,10 +9,10 @@
 </head>
 <body>
   <h1>Circuit Preview</h1>
-  <script type="text/tikz">
-    \begin{tikzpicture}
-      \draw (0,0) -- (1,1) node[right] {It Works!};
-    \end{tikzpicture}
-  </script>
+<script type="text/tikz">
+  \begin{circuitikz}
+    \draw (0,0) to[R=1k] (2,0);
+  \end{circuitikz}
+</script>
 </body>
 </html>
