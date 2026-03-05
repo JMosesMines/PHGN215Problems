@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <!-- Load the CSS for LaTeX fonts -->
-  <link rel="stylesheet" type="text/css" href="https://tikzjax.com">
+  <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
   <!-- Load the matching JS loader you just downloaded -->
-  <script src="tikzjax.js"></script>
+  <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 </head>
 <body>
   <h1>Circuit Preview</h1>
 <script type="text/tikz">
-  \begin{circuitikz}
-    \draw (0,0) to[R=1k] (2,0);
+  \begin{tikzpicture}
+    \draw (0,0) circle (1in);
   \end{circuitikz}
 </script>
 </body>
