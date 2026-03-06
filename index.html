@@ -12,9 +12,6 @@
     };
   </script>
 
-<!-- Put this BEFORE loading tikzjax.js -->
-<script>window.TikZJaxNoAutostart = true;</script>
-
   <!-- TikZJax runtime (your built bundle) -->
   <script src="tikzjax.js"></script>
 
@@ -29,44 +26,35 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
-  <script>
-(async () => {
-  // 1) Initialize TikZJax explicitly (autostart is disabled)
-  if (!window.TikZJax) {
-    console.error('TikZJax not loaded'); 
-    return;
-  }
-  if (window.TikZJax.load) {
-    await window.TikZJax.load();   // init WASM + core
-  }
+  
+<script>
+  // Run exactly once after TikZJax finishes loading
+  window.addEventListener('tikzjax-load-finished', () => {
+    fetch('data.json')
+      .then(r => r.json())
+      .then(({ circuit_lines }) => {
+        const tikz = [
+          '\\usepackage{circuitikz}',
+          '\\begin{document}',
+          '\\begin{circuitikz}[american]',
+          ...circuit_lines,
+          '\\end{circuitikz}',
+          '\\end{document}'
+        ].join('\n');
 
-  // 2) Fetch your JSON
-  const resp = await fetch('data.json');
-  const { circuit_lines } = await resp.json();
+        const mount = document.getElementById('tikz-mount');
+        mount.innerHTML = '';
+        const s = document.createElement('script');
+        s.type = 'text/tikz';
+        s.textContent = tikz;
+        mount.appendChild(s);
 
-  // 3) Build the TikZ document
-  const tikz = [
-    '\\usepackage{circuitikz}',
-    '\\begin{document}',
-    '\\begin{circuitikz}[american]',
-    ...circuit_lines,
-    '\\end{circuitikz}',
-    '\\end{document}'
-  ].join('\n');
-
-  // 4) Insert and process only the mount subtree
-  const mount = document.getElementById('tikz-mount');
-  mount.innerHTML = '';
-  const s = document.createElement('script');
-  s.type = 'text/tikz';
-  s.textContent = tikz;
-  mount.appendChild(s);
-
-  if (window.TikZJax.process) {
-    window.TikZJax.process(mount);
-  }
-})();
+        // Process only this subtree
+        if (window.TikZJax?.process) window.TikZJax.process(mount);
+      });
+  }, { once: true });
 </script>
+
   
 </body>
 </html>
