@@ -32,8 +32,12 @@
   }, { once: true });
 </script>
   
-<script src="tikzjax.js"></script>
-
+<script
+  src="tikzjax.js"
+  onload="console.log('[tikzjax] script executed'); console.log('TikZJax global =', typeof window.TikZJax);"
+  onerror="console.error('[tikzjax] failed to load')">
+</script>
+  
 <script>
   console.log('TikZJax global =', typeof window.TikZJax);
   if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
