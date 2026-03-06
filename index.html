@@ -26,37 +26,33 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
- <script>
-    // 1) Load your JSON
+<script>
+  // Run only after TikZJax has fully loaded its WASM + core
+  window.addEventListener('tikzjax-load-finished', () => {
     fetch('data.json')
       .then(r => r.json())
       .then(({ circuit_lines }) => {
-        // 2) Assemble full TikZ document using the lines from JSON
         const tikz = [
-          '\\\\usepackage{circuitikz}',
-          '\\\\begin{document}',
-          '\\\\begin{circuitikz}[american]',
+          '\\usepackage{circuitikz}',
+          '\\begin{document}',
+          '\\begin{circuitikz}[american]',
           ...circuit_lines,
-          '\\\\end{circuitikz}',
-          '\\\\end{document}'
+          '\\end{circuitikz}',
+          '\\end{document}'
         ].join('\n');
 
-        // 3) Create the script tag that TikZJax recognizes
         const s = document.createElement('script');
         s.type = 'text/tikz';
         s.textContent = tikz;
-
-        // 4) Insert into the page
         document.getElementById('tikz-mount').appendChild(s);
 
-        // 5) Ask TikZJax to (re)process the page (if needed)
+        // Now ask TikZJax to process the newly added script
         if (window.TikZJax && window.TikZJax.process) {
           window.TikZJax.process(document);
         }
       })
-      .catch(err => {
-        console.error('Failed to load data.json', err);
-      });
-  </script>
+      .catch(err => console.error('Failed to load data.json', err));
+  });
+</script>
 </body>
 </html>
