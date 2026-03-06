@@ -26,6 +26,18 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
+<!-- TEMP test: static TikZ block -->
+<script type="text/tikz">
+  \usepackage{circuitikz}
+  \begin{document}
+  \begin{circuitikz}[american]
+    \draw (0,0) to[battery1,l=$V$] (0,3)
+          to[R=$R_1$] (3,3)
+          to[R=$R_2$] (3,0) -- (0,0);
+  \end{circuitikz}
+  \end{document}
+</script>
+
 <script>
   // Run only after TikZJax has fully loaded its WASM + core
   window.addEventListener('tikzjax-load-finished', () => {
