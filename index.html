@@ -2,17 +2,41 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- Load the CSS for LaTeX fonts -->
-  <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-  <!-- Load the matching JS loader you just downloaded -->
-  <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+  <title>TikZJax + CircuitikZ test</title>
+
+  <!-- Tell TikZJax where to fetch YOUR freshly built assets -->
+  <script>
+    window.TikZJaxConfig = {
+      assets: {
+        wasm: 'tex.wasm.gz',
+        core: 'core.dump.gz'
+      }
+    };
+  </script>
+
+  <!-- TikZJax runtime (your built bundle) -->
+  <script src="tikzjax.js"></script>
+
+  <style>
+    body { font-family: system-ui, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+    .demo { margin-top: 1.5rem; }
+  </style>
 </head>
 <body>
-  <h1>Picture</h1>
-<script type="text/tikz">
-  \begin{tikzpicture}
-    \draw (0,0) circle (1in);
-  \end{tikzpicture}
+  <h1>TikZJax + CircuitikZ</h1>
+  <p>If everything is wired up, the script block below will be replaced by an SVG circuit.</p>
+
+  <div class="demo">
+    <script type="text/tikz">
+      \usepackage{circuitikz}
+      \begin{document}
+      \begin{circuitikz}[american]
+        \draw (0,0) to[battery1,l=$V$] (0,3)
+              to[R=$R_1$] (3,3)
+              to[R=$R_2$] (3,0) -- (0,0);
+      \end{circuitikz}
+      \end{document}
 </script>
 </body>
 </html>
