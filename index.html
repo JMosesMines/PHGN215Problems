@@ -12,6 +12,9 @@
     };
   </script>
 
+<!-- Put this BEFORE loading tikzjax.js -->
+<script>window.TikZJaxNoAutostart = true;</script>
+
   <!-- TikZJax runtime (your built bundle) -->
   <script src="tikzjax.js"></script>
 
@@ -26,6 +29,7 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
+  
 <script>
   // Run exactly once after TikZJax finishes loading
   window.addEventListener('tikzjax-load-finished', () => {
