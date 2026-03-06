@@ -52,6 +52,14 @@
   }, { once: true });
 </script>
 
+<script>
+  console.log('[setup] installing tikzjax-load-finished listener');
+  window.addEventListener('tikzjax-load-finished', () => {
+    console.log('[event] tikzjax-load-finished fired');
+  }, { once: true });
+</script>
+  
+tikzjax.js</script>
 <!-- TikZJax runtime (your built bundle) -->
 <script src="tikzjax.js"></script>
 
