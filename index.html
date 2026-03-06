@@ -23,8 +23,6 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
-  
-
 <script>
   console.log('[setup] installing tikzjax-load-finished listener');
   window.addEventListener('tikzjax-load-finished', () => {
@@ -50,18 +48,16 @@
   if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
 </script>
   
+<!-- Put this where your JSON code was; make sure there is NO window.TikZJaxNoAutostart -->
+<div id="tikz-mount"></div>
+
 <script>
 (async () => {
-  if (!window.TikzJax) { console.error('TikzJax not loaded'); return; }
-
-  // init if available
-  if (typeof window.TikzJax.load === 'function') {
-    await window.TikzJax.load();
-  }
-
+  // 1) get the lines from JSON
   const resp = await fetch('data.json');
   const { circuit_lines } = await resp.json();
 
+  // 2) build the TikZ document
   const tikz = [
     '\\usepackage{circuitikz}',
     '\\begin{document}',
@@ -71,6 +67,7 @@
     '\\end{document}'
   ].join('\n');
 
+  // 3) inject the TikZ script BEFORE loading tikzjax.js
   const mount = document.getElementById('tikz-mount');
   mount.innerHTML = '';
   const s = document.createElement('script');
@@ -78,12 +75,10 @@
   s.textContent = tikz;
   mount.appendChild(s);
 
-  // Only call the method your bundle exposes
-  if (typeof window.TikzJax.process === 'function') {
-    window.TikzJax.process(mount);
-  } else {
-    console.warn('TikzJax.process not found');
-  }
+  // 4) now load tikzjax.js so its autostart processes the injected tag
+  const t = document.createElement('script');
+  t.src = 'tikzjax.js';
+  document.head.appendChild(t);
 })();
 </script>
   
