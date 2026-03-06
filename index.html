@@ -53,14 +53,14 @@
 <script>
 (async () => {
   // Ensure the library script is present
-  if (!window.TikZJax) {
-    console.error('TikZJax not loaded');
+  if (!window.TikzJax) {
+    console.error('TikzJax not loaded');
     return;
   }
 
   // If the library exposes an async loader, use it; otherwise continue
-  if (typeof window.TikZJax.load === 'function') {
-    await window.TikZJax.load();   // initializes WASM + core
+  if (typeof window.TikzJax.load === 'function') {
+    await window.TikzJax.load();   // initializes WASM + core
   }
 
   // Fetch your JSON
@@ -86,11 +86,11 @@
   mount.appendChild(s);
 
   // Process (some forks expose process; others reprocess via calling TikZJax)
-  if (typeof window.TikZJax.process === 'function') {
-    window.TikZJax.process(mount);
+  if (typeof window.TikzJax.process === 'function') {
+    window.TikzJax.process(mount);
   } else {
     // Fallback: re-run on the subtree or whole document
-    window.TikZJax(mount || document);
+    window.TikzJax(mount || document);
   }
 })();
 </script>
