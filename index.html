@@ -31,7 +31,14 @@
     console.log('[event] tikzjax-load-finished fired');
   }, { once: true });
 </script>
-  
+
+<script>
+  window.addEventListener('error', (e) => {
+    // surfaces script execution errors across browsers
+    console.log('[script error]', e.filename || '(inline)', e.message || e.error);
+  });
+</script>
+
 <script
   src="tikzjax.js"
   onload="console.log('[tikzjax] script executed'); console.log('TikZJax global =', typeof window.TikZJax);"
