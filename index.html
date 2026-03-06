@@ -35,6 +35,11 @@
 <script src="tikzjax.js"></script>
 
 <script>
+  console.log('TikZJax global =', typeof window.TikZJax);
+  if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
+</script>
+  
+<script>
 (async () => {
   // Ensure the library script is present
   if (!window.TikZJax) {
