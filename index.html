@@ -52,22 +52,16 @@
   
 <script>
 (async () => {
-  // Ensure the library script is present
-  if (!window.TikzJax) {
-    console.error('TikzJax not loaded');
-    return;
-  }
+  if (!window.TikzJax) { console.error('TikzJax not loaded'); return; }
 
-  // If the library exposes an async loader, use it; otherwise continue
+  // init if available
   if (typeof window.TikzJax.load === 'function') {
-    await window.TikzJax.load();   // initializes WASM + core
+    await window.TikzJax.load();
   }
 
-  // Fetch your JSON
   const resp = await fetch('data.json');
   const { circuit_lines } = await resp.json();
 
-  // Build the TikZ doc
   const tikz = [
     '\\usepackage{circuitikz}',
     '\\begin{document}',
@@ -77,7 +71,6 @@
     '\\end{document}'
   ].join('\n');
 
-  // Inject and process only the mount subtree
   const mount = document.getElementById('tikz-mount');
   mount.innerHTML = '';
   const s = document.createElement('script');
@@ -85,12 +78,11 @@
   s.textContent = tikz;
   mount.appendChild(s);
 
-  // Process (some forks expose process; others reprocess via calling TikZJax)
+  // Only call the method your bundle exposes
   if (typeof window.TikzJax.process === 'function') {
     window.TikzJax.process(mount);
   } else {
-    // Fallback: re-run on the subtree or whole document
-    window.TikzJax(mount || document);
+    console.warn('TikzJax.process not found');
   }
 })();
 </script>
