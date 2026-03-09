@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-
-  <title>TikZJax + JSON demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  <title>Circuit Analysis Workbench</title>
 
   <!-- Tell TikZJax where your assets are -->
   <script>
@@ -15,6 +16,15 @@
   <style>
     body { font-family: system-ui, Segoe UI, Roboto, sans-serif; margin: 2rem; }
     .demo { margin-top: 1.5rem; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); width: 100%; max-width: 600px; padding: 2rem; }
+    /* Navigation & Controls */
+    .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    button { background: var(--primary); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    button:disabled { background: #cbd5e1; cursor: not-allowed; }
+    
+    /* Collapsible Solution Style */
+    .solution-drawer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #f1f5f9; border-radius: 8px; margin-top: 1rem; }
+    .solution-drawer.open { max-height: 1000px; padding: 1rem; border: 1px dashed var(--primary); }
   </style>
 </head>
 <body>
@@ -48,8 +58,7 @@
   if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
 </script>
   
-<!-- Put this where your JSON code was; make sure there is NO window.TikZJaxNoAutostart -->
-<div id="tikz-mount"></div>
+<!-- <div id="tikz-mount"></div> -->
 
 <script>
 (async () => {
