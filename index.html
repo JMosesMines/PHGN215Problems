@@ -33,19 +33,21 @@
   <!-- Placeholder where we'll inject the TikZ script tag -->
   <div id="tikz-mount"></div>
 
+<!--
 <script>
   console.log('[setup] installing tikzjax-load-finished listener');
   window.addEventListener('tikzjax-load-finished', () => {
     console.log('[event] tikzjax-load-finished fired');
   }, { once: true });
 </script>
-
+  
 <script>
   window.addEventListener('error', (e) => {
     // surfaces script execution errors across browsers
     console.log('[script error]', e.filename || '(inline)', e.message || e.error);
   });
 </script>
+-->
 
 <script
   src="tikzjax.js"
@@ -58,8 +60,6 @@
   if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
 </script>
   
-<!-- <div id="tikz-mount"></div> -->
-
 <script>
 (async () => {
   // 1) get the lines from JSON
