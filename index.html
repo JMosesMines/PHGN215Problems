@@ -18,11 +18,13 @@
     .demo { margin-top: 1.5rem; }
     .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); width: 100%; max-width: 600px; padding: 2rem; }
     #mount { margin-top: 1rem; }
+    #render{display:inline-block;margin:0.5rem 0;}
     /* Navigation & Controls */
     .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    <!--
     button { background: var(--primary); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
     button:disabled { background: #cbd5e1; cursor: not-allowed; }
-    
+    -->
     /* Collapsible Solution Style */
     .solution-drawer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #f1f5f9; border-radius: 8px; margin-top: 1rem; }
     .solution-drawer.open { max-height: 1000px; padding: 1rem; border: 1px dashed var(--primary); }
@@ -83,7 +85,7 @@
   ].join('\n');
 
   // 3) inject the TikZ script BEFORE loading tikzjax.js
-  const mount = document.getElementById('tikz-mount');
+  const mount = document.getElementById('mount');
   mount.innerHTML = '';
   const s = document.createElement('script');
   s.type = 'text/tikz';
