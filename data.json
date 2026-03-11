@@ -27,7 +27,8 @@
       "\\draw (DRT) to[diode, l=Ge] (DRB);",
       "\\draw (DLT) -- (DRT);",
       "\\draw (DLB) -- (DRB);",
-      "\\draw (CB) to[R, l=10] (\\DiodeCenter,0.0) -- (0,0);"
+      "\\draw (CB) to[R, l=10] (\\DiodeCenter,0.0) -- (0,0);",
+      "\\draw (2.1,2.2) to[R, l=\SI{5}{k\ohm}] (2.1,0.2);"
     ]
   }
 }
