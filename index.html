@@ -133,7 +133,13 @@
     const lines = circuits[name];
     const tikz = [
       '\\usepackage{circuitikz}',
-      '\\newcommand{\\myohm}{\\text{\\symbol{10}}}',
+      '\\newcommand{\\myohm}{%',
+      '  \\begin{tikzpicture}[baseline=(O.base), scale=0.1]',
+      '    \\node[circle, draw, inner sep=1.5pt, line width=0.6pt] (O) at (0,0.15) {};',
+      '    \\draw[line width=0.6pt, white, line cap=rect] (-0.15,-0.1) -- (0.15,-0.1);', // "Gap" in the circle
+      '    \\draw[line width=0.6pt] (-0.25,-0.1) -- (-0.1,-0.1) (0.1,-0.1) -- (0.25,-0.1);', // Feet
+      '  \\end{tikzpicture}%',
+      '}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
