@@ -132,7 +132,7 @@
   function renderCircuit(name) {
     const lines = circuits[name];
     const tikz = [
-      '\\usepackage[siunitx]{circuitikz}',
+      '\\usepackage{circuitikz}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
