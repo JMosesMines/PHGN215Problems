@@ -133,7 +133,7 @@
     const lines = circuits[name];
     const tikz = [
       '\\usepackage{circuitikz}',
-      '\\newcommand{\\myohm}{\\ensuremath{\\mathrm{\\char10}}}',
+      '\\newcommand{\\myohm}{\\text{\\font\\next=cmr10\\next\\char10}}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
