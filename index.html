@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-  <title>Circuit Analysis Workbench</title>
+  <title>PHGN215 Problems</title>
 
   <!-- Tell TikZJax where your assets are -->
   <script>
@@ -42,6 +42,20 @@
 </div>
 <div id="mount"></div>
 
+<div class="card">
+    <h2 id="problem-title">Loading...</h2>
+    <p id="problem-text"></p>
+
+    <!-- This is where the SVG will eventually appear -->
+    <div id="tikz-mount"></div>
+    <div id="status">Waiting for engine...</div>
+
+    <div class="controls">
+        <button onclick="changeProblem(-1)" id="prevBtn">Previous</button>
+        <button onclick="changeProblem(1)" id="nextBtn">Next</button>
+    </div>
+</div>
+  
 <!--
 <script>
   console.log('[setup] installing tikzjax-load-finished listener');
@@ -142,6 +156,11 @@
     document.head.appendChild(t);
   }
 
+  function changeProblem(direction) {
+      currentIndex += direction;
+      renderProblem(currentIndex);
+  }  
+  
   // 4) First render (default = first option)
   renderCircuit(pick.value || Object.keys(circuits)[0]);
 
