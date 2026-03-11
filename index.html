@@ -133,9 +133,13 @@
     const lines = circuits[name];
     const tikz = [
       '\\usepackage{circuitikz}',
-      '\\tikzset{ohm/.style={insert path={',
-      '  +(-0.15,0) -- +(-0.05,0) arc (180:0:0.05) -- +(0.15,0)',
-      '}}}',
+      '\\newcommand{\\myohm}{%',
+      '  \\begin{tikzpicture}[x=1.2ex, y=1.2ex, baseline=-0.1ex]', 
+      '    \\draw[line width=0.7pt, line cap=round] (0,0) -- (0.25,0) ',
+      '      arc (160:20:0.25) ', // Larger, more circular arc
+      '      -- (1,0);',
+      '  \\end{tikzpicture}%',
+      '}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
