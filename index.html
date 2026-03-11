@@ -133,14 +133,7 @@
     const lines = circuits[name];
     const tikz = [
       '\\usepackage{circuitikz}',
-    '\\newcommand{\\myohm}{%',
-    '  \\begin{tikzpicture}[x=1ex, y=1ex, baseline=-0.5ex]', 
-    '    \\draw[line width=0.6pt] (0,0) -- (0.3,0) ',
-    '      arc (180:0:0.2) ',
-    '      -- (1,0);',
-    '    \\draw[line width=0.6pt] (0.3,0) arc (-180:0:0.2);',
-    '  \\end{tikzpicture}%',
-    '}',
+    '\\newcommand{\\myohm}{\\text{\\font\\next=cmr10\\next\\char10}}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
