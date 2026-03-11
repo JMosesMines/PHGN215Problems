@@ -132,8 +132,8 @@
   function renderCircuit(name) {
     const lines = circuits[name];
     const tikz = [
-      '\\usepackage{circuitikz}',
-      '\\newcommand{\\ohmSymbol}{\\tikz[baseline=-0.5ex, x=0.5ex, y=0.5ex]{\\draw[thick] (0,0) -- (1,0) arc (180:0:1) -- (3,0);}}',
+      '\\usepackage[siunitx]{circuitikz}',
+      '\\renewcommand{\\Omega}{\\varOmega}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
