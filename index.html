@@ -133,12 +133,7 @@
     const lines = circuits[name];
     const tikz = [
       '\\usepackage{circuitikz}',
-      '\\newcommand{\\myohm}{%',
-      '  \\kern.2em', // Add a tiny space before the symbol
-      '  \\vbox{\\hrule width .2em height .6pt \\kern .6pt}', // Left foot
-      '  \\kern-.1em\\raise.2ex\\hbox{\\large$\\circ$}\\kern-.1em', // The "O"
-      '  \\vbox{\\hrule width .2em height .6pt \\kern .6pt}', // Right foot
-      '}',
+      '\\newcommand{\\myohm}{\\begin{tikzpicture}[x=1pt,y=1pt,baseline=0pt]\\draw[line width=0.5pt](0,0)--(1.5,0) arc(170:10:2.5) -- (6.5,0);\\end{tikzpicture}}',
       '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
