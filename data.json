@@ -13,6 +13,21 @@
       "\\draw (0,0) to[V=$V_{in}$] (0,3)",
       "to[R=$R_1$] (3,3) to[R=$R_2$] (3,0) -- (0,0);",
       "\\node[right] at (3,1.5) {$V_{out}$};"
+    ],
+    "diodes": [
+      "\\def\\DiodeCenter{3}",
+      "\\coordinate (DLT) at (2,5);",
+      "\\coordinate (DLB) at (2,3);",
+      "\\coordinate (DRT) at (4,5);",
+      "\\coordinate (DRB) at (4,3);",
+      "\\coordinate (CT)  at (\\DiodeCenter,5);",
+      "\\coordinate (CB)  at (\\DiodeCenter,3);",
+      "\\draw (1,0) node[ground]{} to[short] (0,0) to[battery1, l=12\,V] (0,6) -- (\\DiodeCenter,6) -- (CT);",
+      "\\draw (DLT) to[diode, l=Si] (DLB);",
+      "\\draw (DRT) to[diode, l=Ge] (DRB);",
+      "\\draw (DLT) -- (DRT);",
+      "\\draw (DLB) -- (DRB);",
+      "\\draw (CB) to[R, l=5\\,k$\\Omega$] (\\DiodeCenter,0.0) -- (0,0);"
     ]
   }
 }
