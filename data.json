@@ -6,7 +6,7 @@
       "to[R=$R_2$] (3,0) -- (0,0);"
     ],
     "test": [
-      "\\draw (0,2) to[R, l=\\SI{5}{k\\ohm}] (0,0);"
+      "\\draw (0,0) -- (1,0);"
     ],
     "series_rc": [
       "\\draw (0,0) to[vsourcesin, l=$v_s$] (0,3)",
