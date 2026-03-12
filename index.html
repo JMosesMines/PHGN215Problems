@@ -157,6 +157,14 @@
     // Then load tikzjax.js (autostart). Use a cache-buster so it executes each time.
     const t = document.createElement('script');
     t.src = 'tikzjax.js?cb=' + Date.now();
+
+    t.onload = () => {
+      if (window.TikZJax) {
+        window.TikZJax(document);           // <- kick it off explicitly
+      } else {
+        console.error('TikZJax did not expose a global entry point.');
+      }
+    };
     document.head.appendChild(t);
   }
 
