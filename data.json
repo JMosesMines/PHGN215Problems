@@ -6,7 +6,7 @@
       "to[R=$R_2$] (3,0) -- (0,0);"
     ],
     "test": [
-      "\\node[OK]"
+      "\\node[OK];"
     ],
     "series_rc": [
       "\\draw (0,0) to[vsourcesin, l=$v_s$] (0,3)",
