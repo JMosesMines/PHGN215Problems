@@ -132,14 +132,14 @@
   function renderCircuit(name) {
     const lines = circuits[name];
     const tikz = [
-      '\\usepackage{circuitikz}',
+//      '\\usepackage{circuitikz}',
 //      '\\usepackage{siunitx}',
 //      '\\newcommand{\\myohm}{\\begin{tikzpicture}[x=1pt,y=1pt,baseline=0pt]\\draw[line width=0.5pt](0,0)--(1.5,0) arc(170:10:2.5) -- (6.5,0);\\end{tikzpicture}}',
-      '\\begin{document}',
+//      '\\begin{document}',
       '\\begin{circuitikz}[american]',
       ...lines,
       '\\end{circuitikz}',
-      '\\end{document}'
+//      '\\end{document}'
     ].join('\n');
 
     // Clear prior content
