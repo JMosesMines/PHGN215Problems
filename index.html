@@ -136,9 +136,11 @@
 //      '\\usepackage{siunitx}',
 //      '\\newcommand{\\myohm}{\\begin{tikzpicture}[x=1pt,y=1pt,baseline=0pt]\\draw[line width=0.5pt](0,0)--(1.5,0) arc(170:10:2.5) -- (6.5,0);\\end{tikzpicture}}',
 //      '\\begin{document}',
-      '\\begin{circuitikz}[american]',
+//      '\\begin{circuitikz}[american]',
+      '\\begin{tikzpicture}',
       ...lines,
-      '\\end{circuitikz}',
+      '\\end{tikzpicture}'  
+//      '\\end{circuitikz}',
 //      '\\end{document}'
     ].join('\n');
 
