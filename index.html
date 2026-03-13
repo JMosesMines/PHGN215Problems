@@ -80,7 +80,8 @@
   onload="console.log('[tikzjax] script executed'); console.log('TikZJax global =', typeof window.TikZJax);"
   onerror="console.error('[tikzjax] failed to load')">
 </script>
-  
+
+-->
 <script>
   console.log('TikZJax global =', typeof window.TikZJax);
   if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
@@ -116,7 +117,6 @@
   document.head.appendChild(t);
 })();
 </script>
--->
 <!--
 <script type="text/tikz">
 \begin{tikzpicture}
@@ -130,7 +130,7 @@
 \end{tikzpicture}
 </script> 
 -->
-  
+<!--  
 <script>
 (async () => {
   // 1) Load circuits
@@ -199,6 +199,7 @@
   });
 })();
 </script>
+-->
   
 </body>
 </html>
