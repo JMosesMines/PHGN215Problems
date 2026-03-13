@@ -2,12 +2,39 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
-  <!-- Tell TikZJax where your assets are -->
+  <!-- Tell TikZJax where your assets are
   <script>
     window.TikZJaxConfig = {
       assets: { wasm: '/public/tex.wasm.gz', core: '/public/core.dump.gz' }
     };
   </script>
+  -->
+  <script>
+/* 1) Redirect fetch() calls for the engine to your local /public copies */
+(function(){
+  const ORIG_FETCH = window.fetch;
+  window.fetch = function(input, init){
+    const url = (typeof input === 'string') ? input : input && input.url;
+    if (url && /(tikzjax\.com|amazonaws\.com).*\/(tex\.wasm(\.gz)?|core\.dump(\.gz)?)(\?|$)/i.test(url)) {
+      const local = /tex\.wasm/i.test(url) ? '/public/tex.wasm.gz' : '/public/core.dump.gz';
+      return ORIG_FETCH(local, init);
+    }
+    return ORIG_FETCH(input, init);
+  };
+})();
+
+/* 2) Also redirect old-school XHR (in case this build uses it) */
+(function(){
+  const ORIG_OPEN = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url){
+    if (url && /(tikzjax\.com|amazonaws\.com).*\/(tex\.wasm(\.gz)?|core\.dump(\.gz)?)(\?|$)/i.test(url)) {
+      url = /tex\.wasm/i.test(url) ? '/public/tex.wasm.gz' : '/public/core.dump.gz';
+    }
+    return ORIG_OPEN.apply(this, [method, url, ...Array.prototype.slice.call(arguments, 2)]);
+  };
+})();
+</script>  
+  
   <script src="/public/tikzjax.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
