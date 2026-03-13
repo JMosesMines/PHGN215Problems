@@ -10,7 +10,7 @@
     };
   </script>
   
-  <script src="/tikzjax.js"></script>
+  <!-- <script src="/tikzjax.js"></script> -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -117,7 +117,7 @@
 })();
 </script>
 -->
-
+<!--
 <script type="text/tikz">
 \begin{tikzpicture}
   \node {\SI{5}{k\ohm}};
@@ -170,7 +170,7 @@
     s.type = 'text/tikz';
     s.textContent = tikz;
     mount.appendChild(s);
-/*
+
     // Then load tikzjax.js (autostart). Use a cache-buster so it executes each time.
     const t = document.createElement('script');
     t.src = 'tikzjax.js?cb=' + Date.now();
@@ -183,7 +183,6 @@
       }
     };
     document.head.appendChild(t);
-*/
   }
 
   function changeProblem(direction) {
