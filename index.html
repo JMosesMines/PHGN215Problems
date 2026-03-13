@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Tell TikZJax where your assets are -->
+  <script>
+    window.TikZJaxConfig = {
+      assets: { wasm: '/tex.wasm.gz', core: '/core.dump.gz' }
+    };
+  </script>
   <script src="https://tikzjax.com/v1/tikzjax.js"></script>
   <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
   <meta charset="utf-8">
@@ -8,12 +14,6 @@
     
   <title>PHGN215 Problems</title>
 
-  <!-- Tell TikZJax where your assets are -->
-  <script>
-    window.TikZJaxConfig = {
-      assets: { wasm: 'tex.wasm.gz', core: 'core.dump.gz' }
-    };
-  </script>
 
   <style>
     body { font-family: system-ui, Segoe UI, Roboto, sans-serif; margin: 2rem; }
