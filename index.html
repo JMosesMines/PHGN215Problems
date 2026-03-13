@@ -176,10 +176,10 @@
     t.src = 'tikzjax.js?cb=' + Date.now();
 
     t.onload = () => {
-      if (window.TikZJax) {
-        window.TikZJax(document);           // <- kick it off explicitly
+      if (window.TikzJax) {
+        window.TikzJax(document);           // <- kick it off explicitly
       } else {
-        console.error('TikZJax did not expose a global entry point.');
+        console.error('TikzJax did not expose a global entry point.');
       }
     };
     document.head.appendChild(t);
