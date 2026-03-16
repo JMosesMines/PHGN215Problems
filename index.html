@@ -10,7 +10,9 @@
       assets: { wasm: 'tex.wasm.gz', core: 'core.dump.gz' }
     };
   </script>
+  <!--   
   <script src="tikzjax.js"></script>
+-->  
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -174,7 +176,7 @@
     // Then load tikzjax.js (autostart). Use a cache-buster so it executes each time.
     const t = document.createElement('script');
     t.src = 'tikzjax.js?cb=' + Date.now();
-
+/*
     t.onload = () => {
       if (window.TikzJax) {
         window.TikzJax(document);           // <- kick it off explicitly
@@ -182,6 +184,7 @@
         console.error('TikzJax did not expose a global entry point.');
       }
     };
+*/
     document.head.appendChild(t);
   }
 
