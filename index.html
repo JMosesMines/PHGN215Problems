@@ -1,218 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--   <link rel="preload" href="/public/fonts.css" as="style">
-  <link rel="stylesheet" href="/public/fonts.css">
--->  
-  <!-- Tell TikZJax where your assets are -->
-  <script>
-    window.TikZJaxConfig = {
-      assets: { wasm: 'tex.wasm.gz', core: 'core.dump.gz' }
-    };
-  </script>
-  <script src="tikzjax.js"></script> 
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-  <title>PHGN215 Problems</title>
-
-
-  <style>
-    body { font-family: system-ui, Segoe UI, Roboto, sans-serif; margin: 2rem; }
-    .demo { margin-top: 1.5rem; }
-    .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); width: 100%; max-width: 600px; padding: 2rem; }
-    #mount { margin-top: 1rem; }
-    #render{display:inline-block;margin:0.5rem 0;}
-    /* Navigation & Controls */
-    .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-    /*
-    button { background: var(--primary); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
-    button:disabled { background: #cbd5e1; cursor: not-allowed; }
-    */
-    /* Collapsible Solution Style */
-    .solution-drawer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #f1f5f9; border-radius: 8px; margin-top: 1rem; }
-    .solution-drawer.open { max-height: 1000px; padding: 1rem; border: 1px dashed var(--primary); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CircuiTikZ Circuit with TikZJax</title>
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+        .circuit-container {
+            text-align: center;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-  <!-- <h1>TikZJax from JSON</h1> -->
-
-  <div class="demo">
-    <script type="text/tikz">
-      \usepackage{circuitikz}
-      \begin{document}
-      \begin{circuitikz}[american]
-        \draw (0,0) to[battery1,l=$V$] (0,3)
-              to[R=$R_1$] (3,3)
-              to[R=$R_2$] (3,0) -- (0,0);
-      \end{circuitikz}
-      \end{document}
-    </script>
-  </div>
-
-<!-- Mount point for the TikZ script -->
-<div>
-  <label for="pick">Choose circuit:</label>
-  <select id="pick"></select>
-  <button id="render">Render</button>
-</div>
-<div id="mount"></div>
-
-<div class="card">
-    <h2 id="problem-title">Loading...</h2>
-    <p id="problem-text"></p>
-
-    <!-- This is where the SVG will eventually appear -->
-    <div id="tikz-mount"></div>
-    <div id="status">Waiting for engine...</div>
-
-    <div class="controls">
-        <button onclick="changeProblem(-1)" id="prevBtn">Previous</button>
-        <button onclick="changeProblem(1)" id="nextBtn">Next</button>
+    <div class="container">
+        <h1>Simple RC Circuit</h1>
+        <p>This is a basic RC (Resistor-Capacitor) circuit rendered with CircuiTikZ and TikZJax.</p>
+        
+        <div class="circuit-container">
+            <script type="text/tikz">
+                \documentclass{standalone}
+                \usepackage{circuitikz}
+                \begin{document}
+                \begin{tikzpicture}
+                    % Draw the circuit
+                    \draw (0,0) to[V, l=$V_s$] (0,2)
+                        -- (2,2) to[R, l=$R$] (4,2)
+                        -- (4,0) to[C, l=$C$] (2,0)
+                        -- (0,0);
+                    
+                    % Add labels for nodes
+                    \node at (0, -0.5) {GND};
+                    \node at (4, -0.5) {GND};
+                \end{tikzpicture}
+                \end{document}
+            </script>
+        </div>
+        
+        <p><strong>Circuit Description:</strong> A voltage source (V_s) in series with a resistor (R) and capacitor (C) in parallel, all connected to ground.</p>
     </div>
-</div>
-  
-<!--
-<script>
-  console.log('[setup] installing tikzjax-load-finished listener');
-  window.addEventListener('tikzjax-load-finished', () => {
-    console.log('[event] tikzjax-load-finished fired');
-  }, { once: true });
-</script>
-  
-<script>
-  window.addEventListener('error', (e) => {
-    // surfaces script execution errors across browsers
-    console.log('[script error]', e.filename || '(inline)', e.message || e.error);
-  });
-</script>
-
-<script
-  src="tikzjax.js"
-  onload="console.log('[tikzjax] script executed'); console.log('TikZJax global =', typeof window.TikZJax);"
-  onerror="console.error('[tikzjax] failed to load')">
-</script>
-
-<script>
-  console.log('TikZJax global =', typeof window.TikZJax);
-  if (typeof window.TikZJax === 'function') window.TikZJax(document);  // initialize if exposed as a function
-</script>
--->  
-<script>
-(async () => {
-  // 1) get the lines from JSON
-  const resp = await fetch('data.json');
-  const { circuit_lines } = await resp.json();
-
-  // 2) build the TikZ document
-  const tikz = [
-    '\\usepackage{circuitikz}',
-    '\\begin{document}',
-    '\\begin{circuitikz}[american]',
-    ...circuit_lines,
-    '\\end{circuitikz}',
-    '\\end{document}'
-  ].join('\n');
-
-  // 3) inject the TikZ script BEFORE loading tikzjax.js
-  const mount = document.getElementById('mount');
-  mount.innerHTML = '';
-  const s = document.createElement('script');
-  s.type = 'text/tikz';
-  s.textContent = tikz;
-  mount.appendChild(s);
-
-  // 4) now load tikzjax.js so its autostart processes the injected tag
-  const t = document.createElement('script');
-  t.src = 'tikzjax.js';
-  document.head.appendChild(t);
-})();
-</script>
-<!--
-<script type="text/tikz">
-\begin{tikzpicture}
-  \node {\SI{5}{k\ohm}};
-\end{tikzpicture}
-</script>
-
-<script type="text/tikz">
-\begin{tikzpicture}
-  \draw (0,0) -- (1,0);
-\end{tikzpicture}
-</script> 
-
-
-<script type="text/tikz">
-(async () => {
-  // 1) Load circuits
-  const res = await fetch('data.json');
-  const { circuits } = await res.json();
-
-  // 2) Populate dropdown
-  const pick = document.getElementById('pick');
-  Object.keys(circuits).forEach(name => {
-    const opt = document.createElement('option');
-    opt.value = name; opt.textContent = name;
-    pick.appendChild(opt);
-  });
-
-  // 3) Render helper: inject TikZ, then load tikzjax.js so autostart runs
-  function renderCircuit(name) {
-    const lines = circuits[name];
-    const tikz = [
-      '\\usepackage{circuitikz}',
-//      '\\usepackage{siunitx}',
-//      '\\newcommand{\\myohm}{\\begin{tikzpicture}[x=1pt,y=1pt,baseline=0pt]\\draw[line width=0.5pt](0,0)--(1.5,0) arc(170:10:2.5) -- (6.5,0);\\end{tikzpicture}}',
-      '\\begin{document}',
-      '\\begin{circuitikz}[american]',
-//      '\\begin{tikzpicture}',
-      ...lines,
- //     '\\end{tikzpicture}'  
-      '\\end{circuitikz}',
-      '\\end{document}'
-    ].join('\n');
-
-    // Clear prior content
-    const mount = document.getElementById('mount');
-    mount.innerHTML = '';
-
-    // Inject TikZ first
-    const s = document.createElement('script');
-    s.type = 'text/tikz';
-    s.textContent = tikz;
-    mount.appendChild(s);
-
-    // Then load tikzjax.js (autostart). Use a cache-buster so it executes each time.
-    const t = document.createElement('script');
-    t.src = 'tikzjax.js?cb=' + Date.now();
-/*
-    t.onload = () => {
-      if (window.TikzJax) {
-        window.TikzJax(document);           // <- kick it off explicitly
-      } else {
-        console.error('TikzJax did not expose a global entry point.');
-      }
-    };
-*/
-    document.head.appendChild(t);
-  }
-
-  function changeProblem(direction) {
-      currentIndex += direction;
-      renderProblem(currentIndex);
-  }  
-  
-  // 4) First render (default = first option)
-  renderCircuit(pick.value || Object.keys(circuits)[0]);
-
-  // 5) Re-render on click
-  document.getElementById('render').addEventListener('click', () => {
-    renderCircuit(pick.value);
-  });
-})();
-</script>
--->
-  
 </body>
 </html>
